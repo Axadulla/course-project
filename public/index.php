@@ -1,6 +1,7 @@
 <?php
 
 use App\Kernel;
+use Symfony\Component\Runtime\SymfonyRuntime;
 
 require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
 

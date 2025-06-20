@@ -17,8 +17,12 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
+# Копируем все файлы проекта
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader
+# Устанавливаем зависимости без dev, без автоскриптов и запускаем их вручную
+RUN composer install --no-dev --optimize-autoloader --no-scripts \
+ && composer run-script auto-scripts
 
+# Запуск встроенного PHP-сервера
 CMD php -d variables_order=EGPCS -S 0.0.0.0:8080 -t public
