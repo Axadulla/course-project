@@ -1,0 +1,17 @@
+services:
+    - type: web
+      name: symfony-app
+      env: php
+      plan: free
+      repo: https://github.com/Axadulla/course-project.git
+      buildCommand: |
+          composer install --no-dev --optimize-autoloader
+      startCommand: |
+          php -d variables_order=EGPCS -S 0.0.0.0:8080 -t public
+      envVars:
+          - key: APP_ENV
+            value: prod
+          - key: APP_SECRET
+            generateValue: true
+          - key: DATABASE_URL
+            value: postgresql://course_project_db_mnwu_user:ciZUOzVRMlaE3vtTW6gue3M8QJVVFDB7@dpg-d1ajuoqli9vc73c58qh0-a/course_project_db_mnwu
