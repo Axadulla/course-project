@@ -1,13 +1,9 @@
 services:
     - type: web
       name: symfony-app
-      env: php
+      env: docker
       plan: free
       repo: https://github.com/Axadulla/course-project.git
-      buildCommand: |
-          composer install --no-dev --optimize-autoloader
-      startCommand: |
-          php -d variables_order=EGPCS -S 0.0.0.0:8080 -t public
       envVars:
           - key: APP_ENV
             value: prod
